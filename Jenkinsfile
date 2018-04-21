@@ -4,13 +4,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-               sh 'pwd'
-               sh 'hostname'
-               sh 'ls -lrt'
-			   sh 'mvn clean package'
+               sh 'mvn clean package'
             }
         }
-        stage('Test') {
+        stage('Upload') {
             steps {
                 echo 'Testing..'
             }
