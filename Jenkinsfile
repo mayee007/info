@@ -7,6 +7,7 @@ pipeline {
                sh 'pwd'
                sh 'hostname'
                sh 'ls -lrt'
+			   sh 'mvn clean package'
             }
         }
         stage('Test') {
