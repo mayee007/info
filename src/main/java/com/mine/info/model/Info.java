@@ -1,6 +1,5 @@
 package com.mine.info.model;
 
-//import java.sql.Clob; 
 import java.util.Date;
 
 import javax.persistence.Column;
