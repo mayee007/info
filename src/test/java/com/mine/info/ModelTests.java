@@ -29,6 +29,8 @@ public class ModelTests {
 	Problem problem1 = new Problem();
 	Problem problem2; 
 	
+	final Date date = Mockito.mock(Date.class); 
+	
 	@Before
 	public void setup() { 
 		tech2.setCategory("aws");
@@ -39,14 +41,19 @@ public class ModelTests {
 		info1.setTechnology(tech1); 
 		info1.setSubject("something to think about");
 		info1.setDescription("some test desc");
+		info1.setSubmitDate(date);
+		info1.setModifiedDate(date);
 		
-		final Date date = Mockito.mock(Date.class); 
 		info2 = new Info(2, "aws kms", "how to enable kms for an app", date, date, tech1);
 		
 		problem1.setId(1);
 		problem1.setTechnology(tech1); 
 		problem1.setProblem("something problem");
 		problem1.setSolution("some solution");
+		problem1.setReasonForProblem("dont know");
+		problem1.setSubmitDate(date); 
+		problem1.setModifiedDate(date); 
+		
 		problem2 = new Problem(2, "not able to connect to wireless", "dont know", "dont know", date, date, tech1);
 	}
 	
@@ -75,7 +82,9 @@ public class ModelTests {
 	public void infoModelTest2() {
 		assertThat(info1.getId()).isEqualTo(1); 
 		assertThat(info1.getDescription()).isEqualTo("some test desc"); 
-		assertThat(info1.getSubject()).isEqualTo("something to think about"); 
+		assertThat(info1.getSubject()).isEqualTo("something to think about");
+		assertThat(info1.getSubmitDate()).isEqualTo(date);
+		assertThat(info1.getModifiedDate()).isEqualTo(date);
 	}
 	
 	@Test
@@ -104,6 +113,9 @@ public class ModelTests {
 		assertThat(problem2.getId()).isEqualTo(2); 
 		assertThat(problem2.getProblem()).isEqualTo("not able to connect to wireless");
 		assertThat(problem2.getSolution()).isEqualTo("dont know");
+		assertThat(problem2.getReasonForProblem()).isEqualTo("dont know");
+		assertThat(problem2.getSubmitDate()).isEqualTo(date);
+		assertThat(problem2.getModifiedDate()).isEqualTo(date);
 	}
 	
 }
