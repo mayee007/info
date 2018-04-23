@@ -16,14 +16,15 @@ pipeline {
 
     stages {
         stage('Preparation') {
-            
             steps {
-               git 'https://github.com/mayee007/info.git'
+                git 'https://github.com/mayee007/info.git'
             }
         }
         stage('Build') {
             steps {
-               sh 'mvn clean package'
+               sh 'mvn clean package -e checkstyle:checkstyle'
+               checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/checkstyle-result.xml', unHealthy: ''
+               jacoco()
             }
         }
         stage('Upload') {
@@ -34,7 +35,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                sh "/root/workspace/test.sh ${params.destination} ${params.artifactRepositoryUrl} ${params.mavenGroupId} ${params.mavenArtifactId} ${params.version} ${params.packaging} ${params.artifactName}"
+                
             }
         }
     }
