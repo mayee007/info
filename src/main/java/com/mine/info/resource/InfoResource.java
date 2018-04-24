@@ -13,11 +13,12 @@ import java.util.Optional;
 
 import com.mine.info.dao.InfoRepository;
 import com.mine.info.model.Info;
+import com.mine.info.service.InfoService;
 
 @RestController
 public class InfoResource {
 	@Autowired
-	InfoRepository repo;  
+	InfoService service;  
 	
 	// GET ALL 
 	@RequestMapping("/info")
@@ -25,7 +26,7 @@ public class InfoResource {
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Iterable<Info> getInfo() {
 		System.out.println("inside InfoService::getInfo()"); 
-		return repo.findAll(); 
+		return service.getAllInfo(); 
     }
 	
 	// POST 
@@ -35,7 +36,7 @@ public class InfoResource {
 	@RequestMapping(value = "/info", method = RequestMethod.POST)
     public @ResponseBody Info addInfo(@RequestBody Info info) {
 		System.out.println("inside InfoResource.addInfo() "); 
-		repo.save(info);
+		service.addInfo(info);
 		return info; 
     }
 	
@@ -45,8 +46,8 @@ public class InfoResource {
 	@RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
     public @ResponseBody Info getInfoById(@PathVariable Integer id) {
 		System.out.println("inside InfoResource.getInfoById() "); 
-		Optional<Info> info = repo.findById(id); 
-		return info.get(); 		    
+		Info info = service.findInfoById(id); 
+		return info; 		    
     }
 	
 	//DELETE 
@@ -54,7 +55,7 @@ public class InfoResource {
 	@RequestMapping(value = "/info/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteInfo(@PathVariable Integer id) {
 		System.out.println("inside InfoResource.deleteInfo() "); 
-		repo.deleteById(id);	    
+		service.deleteInfo(id);	    
     }
 	
 }
