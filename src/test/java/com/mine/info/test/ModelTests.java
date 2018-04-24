@@ -1,4 +1,4 @@
-package com.mine.info;
+package com.mine.info.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

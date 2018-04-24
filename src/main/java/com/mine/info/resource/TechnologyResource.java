@@ -21,6 +21,11 @@ public class TechnologyResource {
 	@Autowired
 	private TechnologyRepository repo; 
 	
+	@Autowired
+	public void setTechnologyRepository(TechnologyRepository repo) { 
+		this.repo = repo; 
+	}
+	
 	// GET all 
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@RequestMapping(value = "/technology", method = RequestMethod.GET)
