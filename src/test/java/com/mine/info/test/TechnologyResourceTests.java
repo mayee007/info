@@ -3,6 +3,8 @@ package com.mine.info.test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.Before;
@@ -24,61 +26,60 @@ import com.mine.info.model.Info;
 import com.mine.info.model.Problem;
 import com.mine.info.model.Technology;
 import com.mine.info.resource.TechnologyResource;
+import com.mine.info.service.TechnologyService;
 
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TechnologyResource.class)
 public class TechnologyResourceTests {
-	
-	@TestConfiguration
-    static class TechnologyServiceTestContextConfiguration {
-  
-        @Bean
-        public TechnologyResource technologyResource() {
-            return new TechnologyResource();
-        }
-    }
-	
-	//@Autowired 
-	// private MockMvc mock; 
-
+		
 	@MockBean
-	private TechnologyRepository repo; 
+	private TechnologyService service; 
 	
 	@Autowired 
 	private TechnologyResource resource; 
 	
-	Technology tech2; 
-	Iterable<Technology> allTechsExpected; 
+	Technology expectedTechnology; 
+	
+	List<Technology> allTechsExpected = new ArrayList<Technology>(); 
+	
 	@Before
 	public void setUp() {   
 	    
-		//mock object 
-		repo = Mockito.mock(TechnologyRepository.class);
+		//mock repository object 
+		service = Mockito.mock(TechnologyService.class);
 		
 		//create resource and set mock repo 
 		resource = new TechnologyResource(); 
-		resource.setTechnologyRepository(repo);
+		resource.setTechnologyService(service);
 	    
-		Optional<Technology> tech = null; 
-		tech2 = new Technology(1,"java","aws");
-	    
-		allTechsExpected = null; 
-		Mockito.when(repo.findById(1)).thenReturn(tech);
+		// Optional<Technology> tech = null; 
+		expectedTechnology = new Technology(1,"java","aws");
+		
+		//allTechsExpected.add(expectedTechnology); 
+		//allTechsExpected = null; 
+		Mockito.when(service.findTechnologyById(1)).thenReturn(expectedTechnology);
 		//Mockito.when(repo.deleteById(1)).thenReturn(null);
 	}
 	
 	@Test 
-	public void simpleTest()  { 
-		// Technology found = resource.getTechnologyById(1); 
+	public void deleteTechnologyTest()  { 
 		  resource.deleteTechnology(1);
-		  //Iterable<Technology> techs = resource.getAllTechnology(); 
-		  //assertThat(allTechsExpected).isEqualTo(resource.getAllTechnology()); 
-		  resource.addTechnology(tech2); 
-		  resource.getAllTechnology();
-		  
-	     //assertThat(found.getCategory()).isEqualTo("java"); 
-	     //assertThat(found.getTechnologyType()).isEqualTo("aws"); 
-	     //assertThat(found.getTechnologyId()).isEqualTo(1); 
 	}
+	
+	@Test 
+	public void addTechnologyTest()  { 
+		resource.addTechnology(expectedTechnology); 
+	}
+	
+	@Test 
+	public void getAllTechnologyTest()  { 
+		assertThat(resource.getAllTechnology()).isEqualTo(allTechsExpected);
+	}
+	
+	@Test 
+	public void getTechnologyById()  { 
+		assertThat(resource.getTechnologyById(new Integer(1))).isEqualTo(expectedTechnology); 
+	}
+	
 }
