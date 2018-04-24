@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.mine.info.dao.TechnologyRepository;
 import com.mine.info.model.Technology;
 
+@Component
 public class TechnologyServiceImpl implements TechnologyService{
 	@Autowired
 	private TechnologyRepository repo; 

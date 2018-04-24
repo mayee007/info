@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mine.info.dao.ProblemRepository;
 import com.mine.info.model.Problem;
+import com.mine.info.service.ProblemService;
 
 @RestController
 public class ProblemResource {
+	
 	@Autowired
-	ProblemRepository repo;  
+	ProblemService service; 
 	
 	// GET ALL 
 	@RequestMapping("/problem")
@@ -28,7 +30,7 @@ public class ProblemResource {
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Iterable<Problem> getProblem() {
 		System.out.println("inside Problemervice::getProblem()"); 
-		return repo.findAll(); 
+		return service.getAllProblem(); 
     }
 	
 	// POST 
@@ -37,7 +39,7 @@ public class ProblemResource {
 	@RequestMapping(value = "/problem", method = RequestMethod.POST)
     public @ResponseBody Problem addProblem(@RequestBody Problem problem) {
 		System.out.println("inside ProblemResource.addProblem() "); 
-		repo.save(problem);
+		service.addProblem(problem);
 		return problem; 
     }
 	
@@ -47,8 +49,8 @@ public class ProblemResource {
 	@RequestMapping(value = "/problem/{id}", method = RequestMethod.GET)
     public @ResponseBody Problem getProblemById(@PathVariable Integer id) {
 		System.out.println("inside ProblemResource.getProblemById() "); 
-		Optional<Problem> problem = repo.findById(id); 
-		return problem.get(); 		    
+		Problem problem = service.findProblemById(id); 
+		return problem;  		    
     }
 	
 	//DELETE 
@@ -56,6 +58,6 @@ public class ProblemResource {
 	@RequestMapping(value = "/problem/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteProblem(@PathVariable Integer id) {
 		System.out.println("inside ProblemResource.deleteProblem() "); 
-		repo.deleteById(id);	    
+		service.deleteProblem(id);	    
     }
 }
