@@ -20,7 +20,7 @@ public class HelloController {
     @GetMapping(url)
     public String sayHello(
        @RequestParam(value = "name", required = false,
-                          defaultValue = defaultValue) String name, Model model) {
+                     defaultValue = defaultValue) String name, Model model) {
         model.addAttribute(attributeName, name);
         return returnValue;
     }
