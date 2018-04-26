@@ -1,4 +1,4 @@
-package com.mine.info.test;
+package com.mine.info.test.controller;
 
 import org.junit.Before;
 import org.junit.Test;

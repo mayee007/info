@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Technology {
 	
 	@Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	int technologyId;
 	
