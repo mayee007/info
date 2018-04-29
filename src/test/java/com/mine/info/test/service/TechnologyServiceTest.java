@@ -98,11 +98,16 @@ public class TechnologyServiceTest {
 	}
 	
 	@Test 
-	public void getAllTechnology() throws Exception {
+	public void getAllTechnologyCountTest() throws Exception {
 		List<Technology> allTechs = service.getAllTechnology(); 
 		assertEquals(3, allTechs.size()); 
+	}
+	
+	@Test 
+	public void getAllTechnologyValueTest() throws Exception {
+		List<Technology> allTechs = service.getAllTechnology(); 
 		
-		Technology tech3 = allTechs.get(0); 
+		Technology tech3 = allTechs.get(2); 
 		assertEquals("spring", tech3.getCategory()); 
 		assertEquals("java", tech3.getTechnologyType()); 
 	}
