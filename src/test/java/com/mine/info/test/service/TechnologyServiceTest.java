@@ -65,7 +65,16 @@ public class TechnologyServiceTest {
 		//Mockito.when(repo.save(tech)).thenReturn(tech);
 		
 		// when trying to save tech, return the same object 
-		//Mockito.when(service.addTechnology(expectedTechnology)).thenReturn(expectedTechnology);				
+		//Mockito.when(service.addTechnology(expectedTechnology)).thenReturn(expectedTechnology);	
+		
+		// test for for ALL technology 
+		Technology tech1 = new Technology(1, "aws", "iam"); 
+		Technology tech2 = new Technology(1, "aws", "s3"); 
+		Technology tech3 = new Technology(1, "java", "spring"); 
+		allTechsExpected.add(tech1);
+		allTechsExpected.add(tech2);
+		allTechsExpected.add(tech3);
+		Mockito.when(repo.findAll()).thenReturn(allTechsExpected);	
 	}
 	
 	@Test 
@@ -98,4 +107,13 @@ public class TechnologyServiceTest {
 		assertEquals(tech.getTechnologyType(), result.getTechnologyType());
 	}
 	
+	@Test 
+	public void getAllTechnology() throws Exception {
+		List<Technology> allTechs = service.getAllTechnology(); 
+		assertEquals(3, allTechs.size()); 
+		
+		Technology tech3 = allTechs.get(0); 
+		assertEquals("spring", tech3.getCategory()); 
+		assertEquals("java", tech3.getTechnologyType()); 
+	}
 }
