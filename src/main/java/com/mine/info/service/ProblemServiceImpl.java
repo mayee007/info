@@ -34,8 +34,8 @@ public class ProblemServiceImpl implements ProblemService {
 	}
 
 	@Override
-	public void addProblem(Problem problem) {
-		repo.save(problem); 
+	public Problem addProblem(Problem problem) {
+		return repo.save(problem); 
 	}
 
 	@Override
