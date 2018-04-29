@@ -11,5 +11,4 @@ import com.mine.info.model.Technology;
 
 @Repository
 public interface TechnologyRepository extends CrudRepository<Technology, Integer> {
-	//Technology findById(int id); 
 }

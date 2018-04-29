@@ -27,6 +27,7 @@ import com.mine.info.model.Problem;
 import com.mine.info.model.Technology;
 import com.mine.info.resource.TechnologyResource;
 import com.mine.info.service.TechnologyService;
+import static org.mockito.Mockito.times;
 
 
 @RunWith(SpringRunner.class)
@@ -58,7 +59,13 @@ public class TechnologyResourceTests {
 		
 		//allTechsExpected.add(expectedTechnology); 
 		//allTechsExpected = null; 
+		
+		// while trying to find tech with id "1" return Technology pre-created object 
 		Mockito.when(service.findTechnologyById(1)).thenReturn(expectedTechnology);
+		
+		// when trying to save tech, return the same object 
+		Mockito.when(service.addTechnology(expectedTechnology)).thenReturn(expectedTechnology);
+		
 		//Mockito.when(repo.deleteById(1)).thenReturn(null);
 	}
 	
@@ -80,6 +87,5 @@ public class TechnologyResourceTests {
 	@Test 
 	public void getTechnologyById()  { 
 		assertThat(resource.getTechnologyById(new Integer(1))).isEqualTo(expectedTechnology); 
-	}
-	
+	}	
 }

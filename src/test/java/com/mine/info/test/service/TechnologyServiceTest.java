@@ -1,6 +1,8 @@
 package com.mine.info.test.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +48,6 @@ public class TechnologyServiceTest {
 	@Autowired
     WebApplicationContext context;
 	
-	Technology expectedTechnology; 
-	
 	List<Technology> allTechsExpected = new ArrayList<Technology>();
 	Optional<Technology> techExpected; 
 	
@@ -60,6 +60,12 @@ public class TechnologyServiceTest {
         techExpected = Optional.of(tech);  
 		Mockito.when(repo.findById(1)).thenReturn(techExpected); 
 		
+		// when trying to save tech, return the same object 
+		// **** now working for some reason 
+		//Mockito.when(repo.save(tech)).thenReturn(tech);
+		
+		// when trying to save tech, return the same object 
+		//Mockito.when(service.addTechnology(expectedTechnology)).thenReturn(expectedTechnology);				
 	}
 	
 	@Test 
@@ -69,5 +75,27 @@ public class TechnologyServiceTest {
 		assertEquals(techActual.getCategory(), techExpected.get().getCategory());
 		assertEquals(techActual.getTechnologyType(), techExpected.get().getTechnologyType());
     }
+	
+	@Test
+	public void deleteTechnology() throws Exception {
+		service.deleteTechnology(techExpected.get().getTechnologyId());
+		verify(repo, times(1)).delete(techExpected.get()); 
+	}
+	
+	@Test 
+	public void addTechnology() throws Exception {
+		Technology tech = new Technology(1, "aws", "iam");
+		//tech.setTechnologyId(1);
+		//tech.setTechnologyType("aws");
+		//tech.setCategory("iam");
+		
+		// when trying to save tech, return the same object 
+		Mockito.when(repo.save(tech)).thenReturn(tech);
+		
+		Technology result = service.addTechnology(tech); 
+		assertEquals(tech.getCategory(), 
+				result.getCategory());
+		assertEquals(tech.getTechnologyType(), result.getTechnologyType());
+	}
 	
 }

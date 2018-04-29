@@ -7,6 +7,6 @@ import com.mine.info.model.Technology;
 public interface TechnologyService {
 	Technology findTechnologyById(Integer id); 
 	List<Technology> getAllTechnology(); 
-	void addTechnology(Technology tech); 
+	Technology addTechnology(Technology tech); 
 	void deleteTechnology(Integer id); 
 }

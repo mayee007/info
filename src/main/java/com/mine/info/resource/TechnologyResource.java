@@ -44,8 +44,7 @@ public class TechnologyResource {
 	@RequestMapping(value = "/technology", method = RequestMethod.POST)
     public @ResponseBody Technology addTechnology(@RequestBody Technology tech) {
 		System.out.println("inside TechnologyResource.addTechnology() "); 
-		service.addTechnology(tech);
-		return tech; 
+		return service.addTechnology(tech);
     }
 	
 	// GET by ID 

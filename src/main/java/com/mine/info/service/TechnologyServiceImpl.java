@@ -34,8 +34,8 @@ public class TechnologyServiceImpl implements TechnologyService{
 	}
 
 	@Override
-	public void addTechnology(Technology tech) {
-		repo.save(tech); 
+	public Technology addTechnology(Technology tech) {
+		return repo.save(tech); 
 
 	}
 
