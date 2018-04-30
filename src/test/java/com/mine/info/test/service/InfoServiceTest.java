@@ -23,12 +23,9 @@ import org.springframework.web.context.WebApplicationContext;
 import org.mockito.Mockito;
 
 import com.mine.info.dao.InfoRepository;
-import com.mine.info.dao.TechnologyRepository;
 import com.mine.info.model.Info;
 import com.mine.info.model.Technology;
 import com.mine.info.service.InfoServiceImpl;
-import com.mine.info.service.TechnologyService;
-import com.mine.info.service.TechnologyServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = InfoServiceImpl.class)

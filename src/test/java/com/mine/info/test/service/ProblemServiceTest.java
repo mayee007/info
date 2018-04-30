@@ -23,15 +23,12 @@ import org.springframework.web.context.WebApplicationContext;
 import org.mockito.Mockito;
 
 import com.mine.info.dao.ProblemRepository;
-import com.mine.info.dao.TechnologyRepository;
 import com.mine.info.model.Problem;
 import com.mine.info.model.Technology;
 import com.mine.info.service.ProblemServiceImpl;
-import com.mine.info.service.TechnologyService;
-import com.mine.info.service.TechnologyServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = TechnologyService.class)
+@SpringBootTest(classes = ProblemServiceImpl.class)
 public class ProblemServiceTest {
 
 	@MockBean
