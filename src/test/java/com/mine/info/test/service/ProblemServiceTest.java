@@ -75,10 +75,16 @@ public class ProblemServiceTest {
 	}
 	
 	@Test 
-	public void findByProblemIdTest() throws Exception {
+	public void findByProblemIdPresentTest() throws Exception {
 		Problem problemActual = service.findProblemById(1);  
 		assertThat(problemActual.getId())
 			.isEqualTo(repo.findById(1).get().getId()); 
+    }
+	
+	@Test 
+	public void findByProblemIdAbsentTest() throws Exception {
+		Problem problemActual = service.findProblemById(2);  
+		assertThat(problemActual).isEqualTo(null); 
     }
 	
 	@Test
