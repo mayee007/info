@@ -33,8 +33,8 @@ public class InfoServiceImpl implements InfoService {
 	}
 
 	@Override
-	public void addInfo(Info info) {
-		repo.save(info); 
+	public Info addInfo(Info info) {
+		return repo.save(info); 
 	}
 
 	@Override
