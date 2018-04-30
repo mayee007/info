@@ -49,6 +49,7 @@ public class TechnologyServiceTest {
 		Technology tech = new Technology(1, "aws", "iam"); 
         techExpected = Optional.of(tech);  
 		Mockito.when(repo.findById(1)).thenReturn(techExpected); 
+		//Mockito.when(repo.findById(2)).thenReturn(null); 
 		
 		// when trying to save tech, return the same object 
 		// **** now working for some reason 
@@ -68,11 +69,17 @@ public class TechnologyServiceTest {
 	}
 	
 	@Test 
-	public void findByTechnologyIdTest() throws Exception {
+	public void findByTechnologyIdPresentTest() throws Exception {
 		Technology techActual = service.findTechnologyById(1);  
 		assertEquals(techActual.getTechnologyId(), techExpected.get().getTechnologyId());
 		assertEquals(techActual.getCategory(), techExpected.get().getCategory());
 		assertEquals(techActual.getTechnologyType(), techExpected.get().getTechnologyType());
+    }
+	
+	@Test 
+	public void findByTechnologyIdAbsentTest() throws Exception {
+		Technology techActual = service.findTechnologyById(2);  
+		assertEquals(techActual, null);
     }
 	
 	@Test
