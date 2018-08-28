@@ -1,9 +1,13 @@
 package com.mine.info.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.After;
+import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +18,11 @@ import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mine.info.ServletInitializer;
@@ -32,13 +39,30 @@ public class ServletInitalizerTest {
 	private MockMvc mockMvc;
 	@Autowired
 	private WebApplicationContext wac;
-	
-	private ObjectMapper om;
+
 	
 	@Before
 	public void runBefore() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-		om = new ObjectMapper();
+	}
+	
+	@Test
+	public void getAdv() {
+		try {
+			MvcResult result = this.mockMvc.perform(get("/rest/getAdv")).andExpect(status().isOk())
+					.andExpect(content().contentType("application/json"))
+					.andReturn();
+			System.out.println(result.getResponse().getContentAsString());
+			assertEquals("Adv#", result.getResponse().getContentAsString());
+		} catch(Exception e) {
+			System.out.println("Error while retrieving PNR");
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void getDummy() {
+		System.out.println("Ashish");
 	}
 
 }
