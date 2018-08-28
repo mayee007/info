@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement 
 public class Problem {
 	@Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id; 
 	
 	@Column
@@ -40,9 +40,11 @@ public class Problem {
 	@JoinColumn(name = "TECHNOLOGY", referencedColumnName = "ID")
 	Technology technology;
 	
+	// default constructor
 	public Problem() {
 	}
 	
+	// constructor with all params 
 	public Problem(int id, String problem, String reasonForProblem, String solution, Date submitDate, Date modifiedDate, Technology technology) {
 		super();
 		this.id = id;
