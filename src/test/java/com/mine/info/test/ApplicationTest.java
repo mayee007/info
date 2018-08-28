@@ -16,8 +16,8 @@ public class ApplicationTest {
 	public void contextLoads() {
 	}
 	
-	//@Test 
-	//public void applicationStart() { 
-	//	InfoApplication.main(new String[] {});
-	//}
+	@Test 
+	public void applicationStart() { 
+		InfoApplication.main(new String[] {});
+	}
 }
