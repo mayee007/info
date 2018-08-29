@@ -14,11 +14,17 @@ import java.util.Optional;
 import com.mine.info.dao.InfoRepository;
 import com.mine.info.model.Info;
 import com.mine.info.service.InfoService;
+import com.mine.info.service.TechnologyService;
 
 @RestController
 public class InfoResource {
 	@Autowired
 	InfoService service;  
+	
+	@Autowired
+	public void setInfoService(InfoService service) { 
+		this.service = service; 
+	}
 	
 	// GET ALL 
 	@RequestMapping("/info")
