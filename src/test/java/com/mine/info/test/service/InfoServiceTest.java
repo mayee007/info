@@ -99,7 +99,7 @@ public class InfoServiceTest {
 	}
 	
 	@Test 
-	public void addTechnology() throws Exception {
+	public void addTechnologyUsingConstructor() throws Exception {
 		Technology tech = new Technology(1, "aws", "iam");
 		final Date date = Mockito.mock(Date.class); 
 		Info Info = new Info(2, "mock test", "dont know", date, date, tech); 
@@ -112,6 +112,22 @@ public class InfoServiceTest {
 		assertEquals(result.getTechnology(), Info.getTechnology());
 
 	}
+	
+	@Test 
+	public void addTechnologyUsingParams() throws Exception {
+		Technology tech = new Technology(1, "aws", "iam");
+		final Date date = Mockito.mock(Date.class); 
+		Info info = new Info(2, "mock test", "dont know", date, date, tech); 
+		
+		// when trying to save tech, return the same object 
+		Mockito.when(repo.save(info)).thenReturn(info);
+		
+		Info result = service.addInfo(info); 
+		assertEquals(result.getDescription(), info.getDescription());
+		assertEquals(result.getTechnology(), info.getTechnology());
+		assertEquals(result, info);
+	}
+	
 	
 	@Test 
 	public void getAllTechnology() throws Exception {
