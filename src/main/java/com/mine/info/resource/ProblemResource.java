@@ -23,10 +23,6 @@ public class ProblemResource {
 	
 	@Autowired
 	ProblemService service; 
-	
-	public ProblemService getService() {
-		return service;
-	}
 
 	public void setService(ProblemService service) {
 		this.service = service;
