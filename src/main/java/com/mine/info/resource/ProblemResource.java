@@ -1,6 +1,5 @@
 package com.mine.info.resource;
 
-import java.util.Optional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mine.info.dao.ProblemRepository;
 import com.mine.info.model.Problem;
 import com.mine.info.service.ProblemService;
 
@@ -22,11 +20,7 @@ import com.mine.info.service.ProblemService;
 public class ProblemResource {
 	
 	@Autowired
-	ProblemService service; 
-	
-	public ProblemService getService() {
-		return service;
-	}
+	ProblemService service;
 
 	public void setService(ProblemService service) {
 		this.service = service;
