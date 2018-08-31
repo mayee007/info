@@ -23,8 +23,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'printenv'
-                sh 'mvn clean package -Dmaven.test.skip=true'
-			   //sh 'mvn clean package -e checkstyle:checkstyle'
+                //sh 'mvn clean package -Dmaven.test.skip=true'
+	        sh 'mvn clean package -e checkstyle:checkstyle'
             }
         }
         
@@ -37,10 +37,10 @@ pipeline {
                 }
                 stage('Test Coverage') {
                     steps {
-                        //jacoco maximumBranchCoverage: '90', maximumClassCoverage: '80', maximumComplexityCoverage: '70', maximumInstructionCoverage: '50', maximumLineCoverage: '65', maximumMethodCoverage: '70'
+                        jacoco maximumBranchCoverage: '90', maximumClassCoverage: '80', maximumComplexityCoverage: '70', maximumInstructionCoverage: '50', maximumLineCoverage: '65', maximumMethodCoverage: '70'
                         
-                        // send surefire reports 
-                        //junit 'target/surefire-reports/*.xml'
+                        send surefire reports 
+                        junit 'target/surefire-reports/*.xml'
                         
                         sh 'printenv'
                     }
