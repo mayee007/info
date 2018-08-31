@@ -23,7 +23,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'printenv'
-               sh 'mvn clean package -e checkstyle:checkstyle'
+               sh 'mvn clean package -Dmaven.test.skip=true -e checkstyle:checkstyle'
             }
         }
         
