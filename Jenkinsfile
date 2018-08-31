@@ -39,7 +39,7 @@ pipeline {
                     steps {
                         jacoco maximumBranchCoverage: '90', maximumClassCoverage: '80', maximumComplexityCoverage: '70', maximumInstructionCoverage: '50', maximumLineCoverage: '65', maximumMethodCoverage: '70'
                         
-                        send surefire reports 
+                        //send surefire reports 
                         junit 'target/surefire-reports/*.xml'
                         
                         sh 'printenv'
