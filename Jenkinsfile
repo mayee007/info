@@ -55,7 +55,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh "/root/workspace/test.sh ${params.destination} ${params.artifactRepositoryUrl} ${params.mavenGroupId} ${params.mavenArtifactId} ${params.version} ${params.packaging} ${params.artifactName}"
+                sh "/root/workspace/info-server.sh ${params.destination} ${params.artifactRepositoryUrl} ${params.mavenGroupId} ${params.mavenArtifactId} ${params.version} ${params.packaging} ${params.artifactName}"
                 
             }
         }
