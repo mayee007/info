@@ -44,6 +44,7 @@ public class TechnologyResource {
 	@RequestMapping(value = "/technology", method = RequestMethod.POST)
     public @ResponseBody Technology addTechnology(@RequestBody Technology tech) {
 		System.out.println("inside TechnologyResource.addTechnology() "); 
+		System.out.println("tech = " + tech); 
 		return service.addTechnology(tech);
     }
 	
@@ -61,6 +62,7 @@ public class TechnologyResource {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@RequestMapping(value = "/technology/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteTechnology(@PathVariable Integer id) {
+		service.deleteTechnology(id);
 		System.out.println("inside TechnologyResource.deleteTechnology() "); 
 	}
 }
