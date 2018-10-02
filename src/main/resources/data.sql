@@ -9,3 +9,5 @@ values ('test' , current_timestamp, 'test', current_timestamp, 2);
 
 insert into problem (modifieddate, problem, reasonforproblem, solution, submitdate, technology) 
 values (current_timestamp, 'test' , 'test' , 'test', current_timestamp, 2);
+insert into problem (modifieddate, problem, reasonforproblem, solution, submitdate, technology) 
+values (current_timestamp, 'test' , 'test' , 'test', current_timestamp, 1);

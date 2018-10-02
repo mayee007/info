@@ -24,7 +24,7 @@ pipeline {
             steps {
                 sh 'printenv'
                 //sh 'mvn clean package -Dmaven.test.skip=true'
-	        sh 'mvn clean package -e checkstyle:checkstyle'
+	        sh 'mvn clean package -e checkstyle:checkstyle -Dspring.profiles.active=prod'
             }
         }
         
