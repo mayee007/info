@@ -9,4 +9,6 @@ public interface TechnologyService {
 	List<Technology> getAllTechnology(); 
 	Technology addTechnology(Technology tech); 
 	void deleteTechnology(Integer id); 
+	List<String> getAllTechnologyType();
+	List<String> getAllTechnologyCategory();
 }

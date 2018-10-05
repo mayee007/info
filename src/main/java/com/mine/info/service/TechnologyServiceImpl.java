@@ -45,4 +45,21 @@ public class TechnologyServiceImpl implements TechnologyService{
 		repo.delete(tech);
 	}
 
+	@Override
+	public List<String> getAllTechnologyType() {
+		List<String> types = new ArrayList<String>(); 
+		for (Technology tech: repo.findAll()) { 
+			types.add(tech.getTechnologyType()); 
+		}
+		return types; 
+	}
+	
+	@Override
+	public List<String> getAllTechnologyCategory() {
+		List<String> categorys = new ArrayList<String>(); 
+		for (Technology tech: repo.findAll()) { 
+			categorys.add(tech.getCategory()); 
+		}
+		return categorys; 
+	}
 }

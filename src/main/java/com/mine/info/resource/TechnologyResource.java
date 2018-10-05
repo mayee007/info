@@ -76,4 +76,18 @@ public class TechnologyResource {
 		service.deleteTechnology(id);
 		System.out.println("inside TechnologyResource.deleteTechnology() "); 
 	}
+	
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequestMapping(value = "/technology/types", method = RequestMethod.GET)
+    public @ResponseBody List<String> getAllTechnologyType() {
+		System.out.println("inside TechnologyResource.getAllTechnologyType() "); 
+		return service.getAllTechnologyType();
+    }
+	
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequestMapping(value = "/technology/category", method = RequestMethod.GET)
+    public @ResponseBody List<String> getAllTechnologyCategory() {
+		System.out.println("inside TechnologyResource.getAllTechnologyCategory() "); 
+		return service.getAllTechnologyCategory();
+    }
 }

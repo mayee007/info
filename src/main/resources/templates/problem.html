@@ -12,6 +12,13 @@
       <h3>
          CRUD: Problems
       </h3>
+      <script>
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope) {
+		    $scope.names = ["Emil", "Tobias", "Linus"];
+		});
+	  </script>
+
       <form ng-submit="submitProblem()">
          <table border="0">
             <tr>
@@ -27,7 +34,7 @@
                <td><input type="text" ng-model="ProblemForm.solution"  /></td>
             </tr>
             <tr>
-               <td>ReasonForProblem</td>
+               <td>Reason For Problem</td>
                <td><input type="text" ng-model="ProblemForm.reasonForProblem"  /></td>
             </tr>
             <tr>
@@ -39,8 +46,14 @@
                <td><input type="text" ng-model="ProblemForm.modifiedDate"  /></td>
             </tr>
             <tr>
-               <td>Technology</td>
-               <td><input type="text" ng-model="ProblemForm.technology"  /></td>
+               <td>Technology Type</td>
+               <td>
+               	<select ng-model="selectedName" ng-options="x for x in technologytTypes">
+				</select></td>
+				            </tr>
+            <tr>
+               <td>Technology Category</td>
+               <td><input type="text" ng-model="ProblemForm.technology.category"  /></td>
             </tr>
             <tr>
                <td colspan="2">
@@ -59,7 +72,8 @@
             <th>Reason For Problem</th>
             <th>Submit Date</th>
             <th>Modified Date</th>
-            <th>Technology</th>
+            <th>Technology Type</th>
+            <th>Category</th>
             <th>Edit</th>
             <th>Delete</th>
          </tr>
@@ -71,12 +85,13 @@
             <td >{{ problem.reasonForProblem }}</td>
             <td >{{ problem.submitDate }}</td>
             <td >{{ problem.modifiedDate }}</td>
-            <td >{{ problem.technology }}</td>
+            <td >{{ problem.technology.technologyType }}</td>
+            <td >{{ problem.technology.category }}</td>
             <td>
-            <a ng-click="editProblem(tech)" class="edit-button">Edit</a>
+            <a ng-click="editProblem(problem)" class="edit-button">Edit</a>
             </td>
             <td>
-            <a ng-click="deleteProblem(tech)" class="delete-button">Delete</a>
+            <a ng-click="deleteProblem(problem)" class="delete-button">Delete</a>
             </td>
          </tr>
       </table>

@@ -5,6 +5,7 @@ app.controller("TechnologyController", function($scope, $http) {
  
  
     $scope.Technologys = [];
+    
     $scope.TechnologyForm = {
         technologyId: 1,
         technologyType: "",

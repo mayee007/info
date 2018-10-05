@@ -4,13 +4,28 @@ var app = angular.module("ProblemManagement", []);
 app.controller("ProblemController", function($scope, $http) {
  
  
+	$http({
+        method: 'GET',
+        url: '/technology/types'
+    }).then(
+        function(res) { // success
+            $scope.technologytTypes = res.data;
+        },
+        function(res) { // error
+            console.log("Error: " + res.status + " : " + res.data);
+        }
+    );
+	
+	    //$scope.names = ["Emil", "Tobias", "Linus"];
+	
     $scope.Problems = [];
     $scope.ProblemForm = {
         id: 1,
         problem: "",
         reasonForProblem: "", 
         solution: "",
-        technology: "", 
+        technologyType: "", 
+        category: "",
         submitDate: "", 
         modifiedDate: ""
     };
@@ -25,7 +40,7 @@ app.controller("ProblemController", function($scope, $http) {
         var method = "";
         var url = "";
  
-        if ($scope.ProblemForm.ProblemId == -1) {
+        if ($scope.ProblemForm.id == -1) {
             method = "POST";
             url = '/problem';
         } else {
@@ -64,7 +79,8 @@ app.controller("ProblemController", function($scope, $http) {
         $scope.ProblemForm.reasonForProblem = Problem.reasonForProblem;
         $scope.ProblemForm.submitDate = Problem.submitDate;
         $scope.ProblemForm.modifiedDate = Problem.modifiedDate;
-        $scope.ProblemForm.technology = Problem.technology;
+        $scope.ProblemForm.technology.technologyType = Problem.technology.technologyType;
+        $scope.ProblemForm.technology.category = Problem.technology.category;
     };
  
     // Private Method  
@@ -103,7 +119,8 @@ app.controller("ProblemController", function($scope, $http) {
         $scope.ProblemForm.problem = "";
         $scope.ProblemForm.reasonForProblem = "";
         $scope.ProblemForm.solution = "";
-        $scope.ProblemForm.solution = "";
+        $scope.ProblemForm.technology.technologyType = "";
+        $scope.ProblemForm.technology.category = "";
         $scope.ProblemForm.submitDate = "";
         $scope.ProblemForm.submitDate = "";
     };
