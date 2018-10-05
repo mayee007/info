@@ -4,7 +4,7 @@
       <title>AngularJS</title>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
        
-      <script th:src="@{/main.js}"></script>
+      <script th:src="@{/technology.js}"></script>
       <link th:href="@{/main.css}" rel="stylesheet" />
        
       <head>
@@ -44,15 +44,15 @@
             <th>Delete</th>
          </tr>
          <!-- $scope.Technologys -->
-         <tr ng-repeat="Technology in Technologys">
-            <td> {{ Technology.technologyId }}</td>
-            <td> {{ Technology.technologyType }}</td>
-            <td >{{ Technology.category }}</td>
+         <tr ng-repeat="tech in techs">
+            <td> {{ tech.technologyId }}</td>
+            <td> {{ tech.technologyType }}</td>
+            <td >{{ tech.category }}</td>
             <td>
-            <a ng-click="editTechnology(Technology)" class="edit-button">Edit</a>
+            <a ng-click="editTechnology(tech)" class="edit-button">Edit</a>
             </td>
             <td>
-            <a ng-click="deleteTechnology(Technology)" class="delete-button">Delete</a>
+            <a ng-click="deleteTechnology(tech)" class="delete-button">Delete</a>
             </td>
          </tr>
       </table>
