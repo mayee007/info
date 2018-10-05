@@ -36,7 +36,7 @@ public class TechnologyResource {
 		System.out.println("inside TechnologyResource.getAllTechnology() "); 
 		return service.getAllTechnology();
     }
-		
+	
 	//POST 
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

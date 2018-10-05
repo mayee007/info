@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title>AngularJS</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+       
+      <script th:src="@{/Problem.js}"></script>
+      <link th:href="@{/main.css}" rel="stylesheet" />
+       
+      <head>
+   <body ng-app="ProblemManagement" ng-controller="ProblemController">
+      <h3>
+         CRUD: Problems
+      </h3>
+      <form ng-submit="submitProblem()">
+         <table border="0">
+            <tr>
+               <td>Problem Id</td>
+               <td>{{ProblemForm.id}}</td>
+            </tr>
+            <tr>
+               <td>Problem</td>
+               <td><input type="text" ng-model="ProblemForm.problem" /></td>
+            </tr>
+            <tr>
+               <td>Solution</td>
+               <td><input type="text" ng-model="ProblemForm.solution"  /></td>
+            </tr>
+            <tr>
+               <td>ReasonForProblem</td>
+               <td><input type="text" ng-model="ProblemForm.reasonForProblem"  /></td>
+            </tr>
+            <tr>
+               <td>Submit Date</td>
+               <td><input type="text" ng-model="ProblemForm.submitDate"  /></td>
+            </tr>
+            <tr>
+               <td>Modified Date</td>
+               <td><input type="text" ng-model="ProblemForm.modifiedDate"  /></td>
+            </tr>
+            <tr>
+               <td>Technology</td>
+               <td><input type="text" ng-model="ProblemForm.technology"  /></td>
+            </tr>
+            <tr>
+               <td colspan="2">
+                  <input type="submit" value="Submit" class="blue-button" />
+               </td>
+            </tr>
+         </table>
+      </form>
+      <br/>
+      <a class="create-button" ng-click="createProblem()">Create Problem</a>
+      <table border="1">
+         <tr>
+            <th>Problem Id</th>
+            <th>Problem</th>
+            <th>Solution</th>
+            <th>Reason For Problem</th>
+            <th>Submit Date</th>
+            <th>Modified Date</th>
+            <th>Technology</th>
+            <th>Edit</th>
+            <th>Delete</th>
+         </tr>
+         <!-- $scope.Problems -->
+         <tr ng-repeat="problem in problems">
+            <td> {{ problem.id }}</td>
+            <td> {{ problem.problem }}</td>
+            <td >{{ problem.solution }}</td>
+            <td >{{ problem.reasonForProblem }}</td>
+            <td >{{ problem.submitDate }}</td>
+            <td >{{ problem.modifiedDate }}</td>
+            <td >{{ problem.technology }}</td>
+            <td>
+            <a ng-click="editProblem(tech)" class="edit-button">Edit</a>
+            </td>
+            <td>
+            <a ng-click="deleteProblem(tech)" class="delete-button">Delete</a>
+            </td>
+         </tr>
+      </table>
+   </body>
+</html>
