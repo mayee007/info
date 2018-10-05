@@ -21,7 +21,7 @@ app.controller("TechnologyController", function($scope, $http) {
         var method = "";
         var url = "";
  
-        if ($scope.TechnologyForm.technologyId == -1) {
+        if ($scope.technologyForm.technologyId == -1) {
             method = "POST";
             url = '/technology';
         } else {
@@ -32,7 +32,7 @@ app.controller("TechnologyController", function($scope, $http) {
         $http({
             method: method,
             url: url,
-            data: angular.toJson($scope.TechnologyForm),
+            data: angular.toJson($scope.technologyForm),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -54,9 +54,9 @@ app.controller("TechnologyController", function($scope, $http) {
  
     // In case of edit
     $scope.editTechnology = function(Technology) {
-        $scope.TechnologyForm.technologyId = Technology.technologyId;
-        $scope.TechnologyForm.technologyType = Technology.technologyType;
-        $scope.TechnologyForm.category = Technology.category;
+        $scope.technologyForm.technologyId = Technology.technologyId;
+        $scope.technologyForm.technologyType = Technology.technologyType;
+        $scope.technologyForm.category = Technology.category;
     };
  
     // Private Method  
@@ -68,7 +68,7 @@ app.controller("TechnologyController", function($scope, $http) {
             url: '/technology'
         }).then(
             function(res) { // success
-                $scope.Technologys = res.data;
+                $scope.techs = res.data;
             },
             function(res) { // error
                 console.log("Error: " + res.status + " : " + res.data);

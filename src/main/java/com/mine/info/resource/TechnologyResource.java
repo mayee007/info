@@ -48,6 +48,17 @@ public class TechnologyResource {
 		return service.addTechnology(tech);
     }
 	
+	//PUT
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	//@ResponseStatus(HttpStatus.CREATED)
+	@RequestMapping(value = "/technology", method = RequestMethod.PUT)
+	public @ResponseBody Technology updateTechnology(@RequestBody Technology tech) {
+		System.out.println("inside TechnologyResource.updateTechnology() "); 
+		System.out.println("tech = " + tech); 
+		return service.addTechnology(tech);
+	}
+		
 	// GET by ID 
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@RequestMapping(value = "/technology/{id}", method = RequestMethod.GET)
