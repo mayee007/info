@@ -11,4 +11,5 @@ public interface TechnologyService {
 	void deleteTechnology(Integer id); 
 	List<String> getAllTechnologyType();
 	List<String> getAllTechnologyCategory();
+	Technology findTechnology(String type, String category);
 }

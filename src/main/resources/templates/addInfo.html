@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title>AngularJS</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+       
+      <script th:src="@{/technologyList.js}"></script>
+      <link th:href="@{/main.css}" rel="stylesheet" />
+       
+      </head>  
+<body ng-app="TechnologyListManagement">
+<h2>Add new Info</h2>
+<form method="POST" action="/addInfo.htm">
+	
+	<table border="1">
+	<tr ng-controller="TechnologyTypeController">
+		<td> <b>Technology Type </b></td>  
+		<td>
+			<select ng-model="selectedName" name="technologyType" ng-options="x for x in technologyTypes">
+			</select>
+		</td>
+	</tr>
+	<tr ng-controller="TechnologyCategoryController">
+		<td> <b>Category</b></td>  
+		<td>
+		<select ng-model="selectedName" id="category" name="category" ng-options="x for x in technologyCategorys">
+			</select>		
+		</td>
+	</tr>
+	<tr>
+		<td><b> Subject </b></td>
+		<td> <textarea rows="10" cols="80" name="subject"></textarea> </td>
+	</tr>
+	<tr>
+		<td> <b>Description </b></td>
+		<td> <textarea rows="10" cols="80" name="description"></textarea></td>
+	</tr>
+	<tr><td></td>
+		<td> <b><input type="submit" value="submit"/> </b></td>
+	</tr>
+	
+</table>
+</form>	
+</body>
+</html>

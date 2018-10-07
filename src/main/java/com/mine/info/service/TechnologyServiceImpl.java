@@ -25,6 +25,20 @@ public class TechnologyServiceImpl implements TechnologyService{
 	}
 
 	@Override
+	public Technology findTechnology(String type, String category) {
+		System.out.println("inside findTechnology() ");
+		System.out.println(" type "+ type + "  , category " + category); 
+		for (Technology tech: repo.findAll()) { 
+			System.out.println(tech.toString()); 
+			if (tech.getTechnologyType().equals(type) && tech.getCategory().equals(category)) { 
+				System.out.println("found match "); 
+				return tech; 
+			}
+		}
+		return null; 
+	}
+	
+	@Override
 	public List<Technology> getAllTechnology() {
 		List<Technology> techs = new ArrayList<Technology>(); 
 		for (Technology tech: repo.findAll()) { 

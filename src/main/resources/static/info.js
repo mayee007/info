@@ -1,9 +1,9 @@
-var app = angular.module("ProblemManagement", []);
+var app = angular.module("InfoManagement", []);
  
 // Controller Part
-app.controller("ProblemController", function($scope, $http) {
+app.controller("InfoController", function($scope, $http) {
  
- 	console.log("its inside problem.js");
+ 	console.log("its inside Info.js");
 	$http({
         method: 'GET',
         url: '/technology/types'
@@ -30,11 +30,11 @@ app.controller("ProblemController", function($scope, $http) {
     
 	    //$scope.names = ["Emil", "Tobias", "Linus"];
 	
-    $scope.Problems = [];
-    $scope.ProblemForm = {
+    $scope.Infos = [];
+    $scope.InfoForm = {
         id: 1,
-        problem: "",
-        reasonForProblem: "", 
+        Info: "",
+        reasonForInfo: "", 
         solution: "",
         technologyType: "", 
         category: "",
@@ -43,68 +43,67 @@ app.controller("ProblemController", function($scope, $http) {
     };
  
     // Now load the data from server
-    _refreshProblemData();
+    _refreshInfoData();
  
-    // HTTP POST/PUT methods for add/edit Problem  
-    // Call: http://localhost:8080/Problem
-    $scope.submitProblem = function() {
+    // HTTP POST/PUT methods for add/edit Info  
+    // Call: http://localhost:8080/Info
+    $scope.submitInfo = function() {
  
         var method = "";
         var url = "";
  
-        if ($scope.ProblemForm.id == -1) {
+        if ($scope.InfoForm.id == -1) {
             method = "POST";
-            url = '/problem';
+            url = '/info';
         } else {
             method = "PUT";
-            url = '/problem';
+            url = '/info';
         }
  
         $http({
             method: method,
             url: url,
-            data: angular.toJson($scope.ProblemForm),
+            data: angular.toJson($scope.InfoForm),
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(_success, _error);
     };
  
-    $scope.createProblem = function() {
+    $scope.createInfo = function() {
         _clearFormData();
     }
  
-    // HTTP DELETE- delete Problem by Id
-    // Call: http://localhost:8080/Problem/{empId}
-    $scope.deleteProblem = function(Problem) {
+    // HTTP DELETE- delete Info by Id
+    // Call: http://localhost:8080/Info/{empId}
+    $scope.deleteInfo = function(Info) {
         $http({
             method: 'DELETE',
-            url: '/problem/' + Problem.id
+            url: '/info/' + Info.id
         }).then(_success, _error);
     };
  
     // In case of edit
-    $scope.editProblem = function(Problem) {
-        $scope.ProblemForm.id = Problem.id;
-        $scope.ProblemForm.problem = Problem.problem;
-        $scope.ProblemForm.solution = Problem.solution;
-        $scope.ProblemForm.reasonForProblem = Problem.reasonForProblem;
-        $scope.ProblemForm.submitDate = Problem.submitDate;
-        $scope.ProblemForm.modifiedDate = Problem.modifiedDate;
-        $scope.ProblemForm.technologyType = Problem.technology.technologyType;
-        $scope.ProblemForm.category = Problem.technology.category;
+    $scope.editInfo = function(Info) {
+        $scope.InfoForm.id = Info.id;
+        $scope.InfoForm.subject = Info.subject;
+        $scope.InfoForm.description = Info.description;
+        $scope.InfoForm.submitDate = Info.submitDate;
+        $scope.InfoForm.modifiedDate = Info.modifiedDate;
+        $scope.InfoForm.technologyType = Info.technology.technologyType;
+        $scope.InfoForm.category = Info.technology.category;
     };
  
     // Private Method  
-    // HTTP GET- get all Problems collection
-    // Call: http://localhost:8080/Problems
-    function _refreshProblemData() {
+    // HTTP GET- get all Infos collection
+    // Call: http://localhost:8080/Infos
+    function _refreshInfoData() {
         $http({
             method: 'GET',
-            url: '/problem'
+            url: '/info'
         }).then(
             function(res) { // success
-                $scope.problems = res.data;
+                $scope.Infos = res.data;
             },
             function(res) { // error
                 console.log("Error: " + res.status + " : " + res.data);
@@ -113,7 +112,7 @@ app.controller("ProblemController", function($scope, $http) {
     }
  
     function _success(res) {
-        _refreshProblemData();
+        _refreshInfoData();
         _clearFormData();
     }
  
@@ -127,13 +126,12 @@ app.controller("ProblemController", function($scope, $http) {
  
     // Clear the form
     function _clearFormData() {
-        $scope.ProblemForm.id = -1;
-        $scope.ProblemForm.problem = "";
-        $scope.ProblemForm.reasonForProblem = "";
-        $scope.ProblemForm.solution = "";
-        $scope.ProblemForm.technology.technologyType = "";
-        $scope.ProblemForm.technology.category = "";
-        $scope.ProblemForm.submitDate = "";
-        $scope.ProblemForm.submitDate = "";
+        $scope.InfoForm.id = -1;
+        $scope.InfoForm.subject = "";
+        $scope.InfoForm.description = "";
+        $scope.InfoForm.technology.technologyType = "";
+        $scope.InfoForm.technology.category = "";
+        $scope.InfoForm.submitDate = "";
+        $scope.InfoForm.submitDate = "";
     };
 });

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title>AngularJS</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+       
+      <script th:src="@{/Info.js}"></script>
+      <link th:href="@{/main.css}" rel="stylesheet" />
+       
+      </head>
+   <body ng-app="InfoManagement" ng-controller="InfoController">
+      <h3>
+         CRUD: Infos
+      </h3>
+
+ 
+      <table border="1">
+         <tr>
+            <th>Info Id</th>
+            <th>Subject</th>
+            <th>Submit Date</th>
+            <th>Modified Date</th>
+            <th>Technology Type</th>
+            <th>Category</th>
+            <th>Edit</th>
+            <th>Delete</th>
+         </tr>
+         <!-- $scope.Infos -->
+         <tr ng-repeat="Info in Infos">
+            <td> {{ Info.id }}</td>
+            <td> {{ Info.subject }}</td>
+            <td >{{ Info.description }}</td>
+            <td >{{ Info.submitDate }}</td>
+            <td >{{ Info.modifiedDate }}</td>
+            <td >{{ Info.technology.technologyType }}</td>
+            <td >{{ Info.technology.category }}</td>
+            <td>
+            <a ng-click="editInfo(Info)" class="edit-button">Edit</a>
+            </td>
+            <td>
+            <a ng-click="deleteInfo(Info)" class="delete-button">Delete</a>
+            </td>
+         </tr>
+      </table>
+      
+            <a class="create-button" ng-click="createInfo()">Create Info</a>
+            
+           <form ng-submit="submitInfo()">
+         <table border="0">
+            <tr>
+               <td>Info Id</td>
+               <td>{{InfoForm.id}}</td>
+            </tr>
+            <tr>
+               <td>Subject</td>
+               <td><input type="text" ng-model="InfoForm.subject" /></td>
+            </tr>
+            <tr>
+               <td>Description</td>
+               <td><input type="text" ng-model="InfoForm.description"  /></td>
+            </tr>
+            <tr>
+               <td>Submit Date</td>
+               <td><input type="text" ng-model="InfoForm.submitDate"  /></td>
+            </tr>
+            <tr>
+               <td>Modified Date</td>
+               <td><input type="text" ng-model="InfoForm.modifiedDate"  /></td>
+            </tr>
+            <tr>
+               <td>Technology Type</td>
+               <td>
+               	<select ng-model="selectedName" ng-options="x for x in technologyTypes">
+				</select></td>
+			</tr>
+            <tr>
+               <td>Technology Category</td>
+               <td>
+               	<select ng-model="selectedName" ng-options="x for x in technologyCategory">
+				</select></td>
+            </tr>
+            <tr>
+               <td colspan="2">
+                  <input type="submit" value="Submit" class="blue-button" />
+               </td>
+            </tr>
+         </table>
+      </form>
+      <br/>
+
+   </body>
+</html>

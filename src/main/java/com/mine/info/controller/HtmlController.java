@@ -19,6 +19,13 @@ public class HtmlController {
 		return "technology";
 	}
 	
+	@GetMapping("/addTechnology.html")
+	String addTechnology(Map<String, Object> model) {
+		logger.info("inside HtmlController::addTechnology()");
+			
+		return "addTechnology";
+	}
+	
 	@GetMapping("/problem.html")
 	String listAllProblem(Map<String, Object> model) {
 		logger.info("inside ProblemController::listAllProblem()");
@@ -26,4 +33,24 @@ public class HtmlController {
 		return "problem";
 	}
 	
+	@GetMapping("/addProblem.html")
+	String addProblem(Map<String, Object> model) {
+		logger.info("inside ProblemController::addProblem()");
+			
+		return "addProblem";
+	}
+	
+	@GetMapping("/info.html")
+	String listAllInfo(Map<String, Object> model) {
+		logger.info("inside HtmlController::listAllInfo()");
+			
+		return "info";
+	}
+	
+	@GetMapping("/addInfo.html")
+	String addInfo(Map<String, Object> model) {
+		logger.info("inside HtmlController::addInfo()");
+			
+		return "addInfo";
+	}
 }

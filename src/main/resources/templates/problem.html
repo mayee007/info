@@ -7,63 +7,13 @@
       <script th:src="@{/Problem.js}"></script>
       <link th:href="@{/main.css}" rel="stylesheet" />
        
-      <head>
+      </head>
    <body ng-app="ProblemManagement" ng-controller="ProblemController">
       <h3>
          CRUD: Problems
       </h3>
-      <script>
-		var app = angular.module('myApp', []);
-		app.controller('myCtrl', function($scope) {
-		    $scope.names = ["Emil", "Tobias", "Linus"];
-		});
-	  </script>
 
-      <form ng-submit="submitProblem()">
-         <table border="0">
-            <tr>
-               <td>Problem Id</td>
-               <td>{{ProblemForm.id}}</td>
-            </tr>
-            <tr>
-               <td>Problem</td>
-               <td><input type="text" ng-model="ProblemForm.problem" /></td>
-            </tr>
-            <tr>
-               <td>Solution</td>
-               <td><input type="text" ng-model="ProblemForm.solution"  /></td>
-            </tr>
-            <tr>
-               <td>Reason For Problem</td>
-               <td><input type="text" ng-model="ProblemForm.reasonForProblem"  /></td>
-            </tr>
-            <tr>
-               <td>Submit Date</td>
-               <td><input type="text" ng-model="ProblemForm.submitDate"  /></td>
-            </tr>
-            <tr>
-               <td>Modified Date</td>
-               <td><input type="text" ng-model="ProblemForm.modifiedDate"  /></td>
-            </tr>
-            <tr>
-               <td>Technology Type</td>
-               <td>
-               	<select ng-model="selectedName" ng-options="x for x in technologytTypes">
-				</select></td>
-				            </tr>
-            <tr>
-               <td>Technology Category</td>
-               <td><input type="text" ng-model="ProblemForm.technology.category"  /></td>
-            </tr>
-            <tr>
-               <td colspan="2">
-                  <input type="submit" value="Submit" class="blue-button" />
-               </td>
-            </tr>
-         </table>
-      </form>
-      <br/>
-      <a class="create-button" ng-click="createProblem()">Create Problem</a>
+ 
       <table border="1">
          <tr>
             <th>Problem Id</th>
@@ -95,5 +45,55 @@
             </td>
          </tr>
       </table>
+      
+            <a class="create-button" ng-click="createProblem()">Create Problem</a>
+            
+           <form ng-submit="submitProblem()">
+         <table border="0">
+            <tr>
+               <td>Problem Id</td>
+               <td>{{ProblemForm.id}}</td>
+            </tr>
+            <tr>
+               <td>Problem</td>
+               <td><input type="text" ng-model="ProblemForm.problem" /></td>
+            </tr>
+            <tr>
+               <td>Solution</td>
+               <td><input type="text" ng-model="ProblemForm.solution"  /></td>
+            </tr>
+            <tr>
+               <td>Reason For Problem</td>
+               <td><input type="text" ng-model="ProblemForm.reasonForProblem"  /></td>
+            </tr>
+            <tr>
+               <td>Submit Date</td>
+               <td><input type="text" ng-model="ProblemForm.submitDate"  /></td>
+            </tr>
+            <tr>
+               <td>Modified Date</td>
+               <td><input type="text" ng-model="ProblemForm.modifiedDate"  /></td>
+            </tr>
+            <tr>
+               <td>Technology Type</td>
+               <td>
+               	<select ng-model="selectedName" ng-options="x for x in technologyTypes">
+				</select></td>
+			</tr>
+            <tr>
+               <td>Technology Category</td>
+               <td>
+               	<select ng-model="selectedName" ng-options="x for x in technologyCategory">
+				</select></td>
+            </tr>
+            <tr>
+               <td colspan="2">
+                  <input type="submit" value="Submit" class="blue-button" />
+               </td>
+            </tr>
+         </table>
+      </form>
+      <br/>
+
    </body>
 </html>
