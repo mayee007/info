@@ -57,6 +57,6 @@ public class InfoController {
 		info.setModifiedDate(new Date());
 		service.addInfo(info); 
 		
-	    return "Info" ;
+	    return "info" ;
 	}
 }
