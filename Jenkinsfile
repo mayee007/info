@@ -9,7 +9,7 @@ pipeline {
         string(name: 'artifactName', defaultValue: 'info.war', description: '')
         string(name: 'version', defaultValue: '1.0', description: '')
         string(name: 'packaging', defaultValue: 'war', description: '')
-        string(name: 'destination', defaultValue: '/root/info/info-api', description: '')
+        string(name: 'destination', defaultValue: '/root/info-scripts/info-api', description: '')
         string(name: 'artifactRepositoryUrl', defaultValue: 'http://localhost:8081/artifactory/snapshots', description: '')
         
     }
