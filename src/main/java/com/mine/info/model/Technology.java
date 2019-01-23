@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "TECHNOLOGY")
 @XmlRootElement 
-public class Technology {
+public class Technology implements java.io.Serializable {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -33,7 +33,7 @@ public class ProblemResource {
 	@GET
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Iterable<Problem> getProblem() {
-		System.out.println("inside Problemervice::getProblem()"); 
+		System.out.println("Server: inside ProblemService::getProblem()"); 
 		return service.getAllProblem(); 
     }
 	
@@ -42,7 +42,7 @@ public class ProblemResource {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@RequestMapping(value = "/problem", method = RequestMethod.POST)
     public @ResponseBody Problem addProblem(@RequestBody Problem problem) {
-		System.out.println("inside ProblemResource.addProblem() "); 
+		System.out.println("Server: inside ProblemResource.addProblem() "); 
 		service.addProblem(problem);
 		return problem; 
     }
@@ -52,7 +52,7 @@ public class ProblemResource {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@RequestMapping(value = "/problem/{id}", method = RequestMethod.GET)
     public @ResponseBody Problem getProblemById(@PathVariable Integer id) {
-		System.out.println("inside ProblemResource.getProblemById() "); 
+		System.out.println("Server: inside ProblemResource.getProblemById() "); 
 		Problem problem = service.findProblemById(id); 
 		return problem;  		    
     }
@@ -61,7 +61,7 @@ public class ProblemResource {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@RequestMapping(value = "/problem/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteProblem(@PathVariable Integer id) {
-		System.out.println("inside ProblemResource.deleteProblem() "); 
+		System.out.println("Server: inside ProblemResource.deleteProblem() "); 
 		service.deleteProblem(id);	    
     }
 }

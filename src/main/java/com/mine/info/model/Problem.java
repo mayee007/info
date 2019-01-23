@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "PROBLEM")
 @XmlRootElement 
-public class Problem {
+public class Problem implements java.io.Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id; 
