@@ -55,6 +55,9 @@ public class ProblemServiceImpl implements ProblemService {
 	@Override
 	public Problem addProblem(Problem problem) {
 		Problem newProblem = repo.save(problem); 
+		System.out.println("inside addProblem server:");
+		System.out.println("before adding, tech :"+problem); 
+		System.out.println("after  adding, tech :"+newProblem); 
 		redisOps.put(KEY, newProblem.getId(), newProblem);
 		return newProblem;
 	}

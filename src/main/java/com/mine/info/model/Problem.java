@@ -110,5 +110,13 @@ public class Problem implements java.io.Serializable {
 	public void setTechnology(Technology technology) {
 		this.technology = technology;
 	}
+
+	@Override
+	public String toString() {
+		return "Problem [id=" + id + ", problem=" + problem + ", reasonForProblem=" + reasonForProblem + ", solution="
+				+ solution + ", submitDate=" + submitDate + ", modifiedDate=" + modifiedDate + ", technology="
+				+ technology + "]";
+	}
+	
 	
 }
