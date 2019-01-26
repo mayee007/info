@@ -5,7 +5,7 @@
 
 	<groupId>com.mine.info</groupId>
 	<artifactId>info</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.1.0</version>
 	<packaging>war</packaging>
 
 	<name>info</name>
@@ -95,10 +95,6 @@
 		<dependency>
 		    <groupId>redis.clients</groupId>
 		    <artifactId>jedis</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
 	</dependencies>
