@@ -1,0 +1,68 @@
+pipeline {
+    agent { 
+		label 'kubeworker1'
+	}
+
+    parameters { 
+        string(name: 'mavenGroupId', defaultValue: 'com.mine', description: '')
+        string(name: 'mavenArtifactId', defaultValue: 'info', description: '')
+        string(name: 'artifactName', defaultValue: 'info.war', description: '')
+        string(name: 'version', defaultValue: '1.1.0', description: '')
+        string(name: 'packaging', defaultValue: 'war', description: '')
+        string(name: 'dockerImageTag', defaultValue: '192.168.99.100:5000/info-api:latest', description: '')
+        
+    }
+
+    stages {
+        stage('Preparation') {
+            steps {
+                git 'https://github.com/mayee007/info.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'printenv'
+                //sh 'mvn clean package -Dmaven.test.skip=true'
+	        sh 'mvn clean package -e checkstyle:checkstyle -Dspring.profiles.active=dev'
+            }
+        }
+        
+        stage('Analysis') { 
+            parallel { 
+                stage('Code Coverage') {
+                    steps {
+                       checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/checkstyle-result.xml', unHealthy: ''
+                    }
+                }
+                stage('Test Coverage') {
+                    steps {
+                        jacoco maximumBranchCoverage: '90', maximumClassCoverage: '80', maximumComplexityCoverage: '70', maximumInstructionCoverage: '50', maximumLineCoverage: '65', maximumMethodCoverage: '70'
+                        
+                        //send surefire reports 
+                        junit 'target/surefire-reports/*.xml'
+                        
+                        sh 'printenv'
+                    }
+                }
+            }
+        }
+	stage('Convert') {                                                                                                  
+    	  steps {                                                                                                         
+        	sh "./createProductionWar.sh ${params.artifactName}"                                                        
+          }                                                                                                               
+	}                                                                                                                   
+	stage('DockerImage') {                                                                                              
+          steps {                                                                                                         
+        	sh "docker build -t ${params.dockerImageTag} ."                                                             
+        	sh "docker push ${params.dockerImageTag}"                                                                   
+          }                                                                                                               
+	}                                                                                                                   
+	stage('KubeService') {                                                                                              
+          steps {                                                                                                         
+        	sh "ssh -i ~/.ssh/master_private_key master info/api_delete.sh"                                          
+        	sh "ssh -i ~/.ssh/master_private_key master 'kubectl create -f info/info-app-api.yml'"               
+        	sh "ssh -i ~/.ssh/master_private_key master 'kubectl get svc info-app-api'"                          
+       	  }                                                                                                               
+	}                                                                                                                   
+    }
+}
