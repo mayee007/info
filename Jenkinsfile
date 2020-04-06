@@ -24,18 +24,18 @@ pipeline {
             steps {
                 sh 'printenv'
                 //sh 'mvn clean package -Dmaven.test.skip=true'
-				//sh 'mvn clean package -e checkstyle:checkstyle -Dspring.profiles.active=dev'
-				sh 'mvn clean package -Dspring.profiles.active=dev'
+				sh 'mvn clean package -e checkstyle:checkstyle -Dspring.profiles.active=dev'
+				// sh 'mvn clean package -Dspring.profiles.active=dev'
             }
         }
         
         stage('Analysis') { 
             parallel { 
-                stage('Code Coverage') {
+                /* stage('Code Coverage') {
                     steps {
                        checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/checkstyle-result.xml', unHealthy: ''
                     }
-                }
+                } */ 
                 stage('Test Coverage') {
                     steps {
                         jacoco maximumBranchCoverage: '90', maximumClassCoverage: '80', maximumComplexityCoverage: '70', maximumInstructionCoverage: '50', maximumLineCoverage: '65', maximumMethodCoverage: '70'
