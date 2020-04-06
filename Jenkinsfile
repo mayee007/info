@@ -24,7 +24,8 @@ pipeline {
             steps {
                 sh 'printenv'
                 //sh 'mvn clean package -Dmaven.test.skip=true'
-	        sh 'mvn clean package -e checkstyle:checkstyle -Dspring.profiles.active=dev'
+				//sh 'mvn clean package -e checkstyle:checkstyle -Dspring.profiles.active=dev'
+				sh 'mvn clean package -Dspring.profiles.active=dev'
             }
         }
         
@@ -47,6 +48,7 @@ pipeline {
                 }
             }
         }
+		
         stage('Upload') {
             steps {
                 sh "cp target/*.war target/${params.artifactName}"
