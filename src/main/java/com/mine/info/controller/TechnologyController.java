@@ -22,7 +22,7 @@ public class TechnologyController {
 	TechnologyService techService; 
 	
 	@PostMapping("/addTechnology.htm")
-	String  addInfo(@RequestParam("category") String category, 
+	String  addTechnology(@RequestParam("category") String category, 
 			@RequestParam("technologyType") String technologyType,
 			Map<String, Object> model) {
 		
